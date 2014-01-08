@@ -24,6 +24,7 @@ namespace OctoEngine
         public Game(int gameWidth, int gameHeight)
         {
             GraphicsDeviceManager = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
 
             GameWidth = gameWidth;
             GameHeight = gameHeight;

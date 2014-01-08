@@ -13,6 +13,7 @@ namespace OctoEngine
     {
         protected readonly List<GameObject> GameObjects = new List<GameObject>();
         protected ContentManager Content;
+        protected GameStateManager HoldingGameStateManager;
 
         public virtual void Dispose()
         {
@@ -33,11 +34,17 @@ namespace OctoEngine
 
         public virtual void Initialize( Game game)
         {
+            HoldingGameStateManager = game.GameStateManager;
             Content = new ContentManager(game.Services, "Content");
             Load();
         }
 
         public abstract void Load();
+
+        public virtual void Initialize(Game game, GameStateManager gameStateManager) 
+        {
+            HoldingGameStateManager = gameStateManager;
+        }
 
         public virtual void Update(GameTime gameTime, ResolutionIndependentRenderer independentRenderer)
         {
