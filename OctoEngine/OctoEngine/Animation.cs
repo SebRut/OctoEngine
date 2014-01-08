@@ -4,13 +4,13 @@ using Tao.Sdl;
 
 namespace OctoEngine
 {
-    abstract class Animation
+    public abstract class Animation
     {
         public float FramesPerSecond;
         public int CurrentFrameIndex;
         protected Texture2D[] Frames;
 
-        public Texture2D CurrentFrame
+        protected Texture2D CurrentFrame
         {
             get { return Frames[CurrentFrameIndex]; }
         }

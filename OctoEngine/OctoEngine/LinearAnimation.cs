@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace OctoEngine
 {
-    class LinearAnimation : Animation
+    public class LinearAnimation : Animation
     {
         private TimeSpan lastPlay = new TimeSpan();
 

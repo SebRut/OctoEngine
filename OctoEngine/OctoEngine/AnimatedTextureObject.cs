@@ -2,9 +2,9 @@
 
 namespace OctoEngine
 {
-    class AnimatedTextureObject : TextureObject
+    public class AnimatedTextureObject : TextureObject
     {
-        private Animation animation;
+        private readonly Animation animation;
 
         public AnimatedTextureObject(Animation animation, Vector2 position = new Vector2()) : base(animation.CurrentFrame, position)
         {
