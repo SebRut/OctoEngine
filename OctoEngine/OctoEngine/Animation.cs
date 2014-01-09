@@ -10,7 +10,7 @@ namespace OctoEngine
         public int CurrentFrameIndex;
         protected Texture2D[] Frames;
 
-        protected Texture2D CurrentFrame
+        public Texture2D CurrentFrame
         {
             get { return Frames[CurrentFrameIndex]; }
         }

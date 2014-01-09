@@ -13,7 +13,7 @@ namespace OctoEngine
         private readonly Game game;
         public GameState CurrentGameState;
 
-        public GameStateManager(Game game )
+        public GameStateManager(Game game)
         {
             this.game = game;
             History = new List<Type>();
@@ -29,15 +29,19 @@ namespace OctoEngine
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                if (History.Count == 0) game.Exit();
-                else History.RemoveAt(History.Count - 1);
-                   
-                if(History.Count >= 1)
+                GameState lastState = (GameState)Activator.CreateInstance(History[History.Count - 1]);
+                if (lastState.HistoryAccess)
                 {
-                    SwitchState((GameState) Activator.CreateInstance(History[History.Count-1]));
-                    History.RemoveAt(History.Count - 2);
-                }
+                    if (History.Count == 0) game.Exit();
+                    else History.RemoveAt(History.Count - 1);
 
+                    if (History.Count >= 1)
+                    {
+
+                        SwitchState(lastState);
+                        History.RemoveAt(History.Count - 2);
+                    }
+                }
             }
             CurrentGameState.Update(gameTime, game.ResolutionIndependentRenderer);
         }

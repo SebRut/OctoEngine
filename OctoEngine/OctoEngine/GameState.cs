@@ -12,6 +12,8 @@ namespace OctoEngine
     public abstract class GameState : IDisposable
     {
         protected readonly List<GameObject> GameObjects = new List<GameObject>();
+        public bool HistoryAccess;
+        protected Game HoldingGame;
         protected ContentManager Content;
         protected GameStateManager HoldingGameStateManager;
 
@@ -34,6 +36,7 @@ namespace OctoEngine
 
         public virtual void Initialize( Game game)
         {
+            HoldingGame = game;
             HoldingGameStateManager = game.GameStateManager;
             Content = new ContentManager(game.Services, "Content");
             Load();

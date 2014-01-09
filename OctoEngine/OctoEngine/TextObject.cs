@@ -12,7 +12,7 @@ namespace OctoEngine
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, (int)Font.MeasureString(Text).X, (int)Font.MeasureString(Text).Y);
+                return new Rectangle((int)Position.X, (int)Position.Y, (int) (Font.MeasureString(Text).X * Scale), (int) (Font.MeasureString(Text).Y * Scale));
             }
         }
 
@@ -39,9 +39,14 @@ namespace OctoEngine
             CenterElement(screenWidth, screenHeight, vertically);
         }
 
+        public void CenterElement(Game game, bool vertically = false)
+        {
+            CenterElement(game.GameWidth, game.GameHeight, vertically);
+        }
+
         public void CenterElement(int screenWidth, int screenHeight, bool vertically = false)
         {
-            Position = new Vector2(-(int)Font.MeasureString(Text).X / 2, vertically ? -(int)Font.MeasureString(Text).Y / 2 : Position.Y);
+            Position = new Vector2(-Bounds.Width / 2, vertically ? -Bounds.Y / 2 : Position.Y);
         }
     }
 }
